@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Бургаспътстрой АД</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .top-bar {
+      background: #f8f9fa;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .top-bar-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-item i {
+      color: #004a99;
+      font-size: 18px;
+    }
+
+    .contact-item a {
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .contact-item a:hover {
+      color: #004a99;
+    }
+
+    .working-hours {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #333;
+      font-size: 14px;
+    }
+
+    .working-hours i {
+      color: #004a99;
+    }
+
+    .nav-bar {
+      background: linear-gradient(135deg, #004a99 0%, #003366 100%);
+      padding: 15px 0;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-container:hover {
+      transform: scale(1.02);
+    }
+
+    header img {
+      height: 50px;
+      filter: brightness(0) invert(1);
+    }
+
+    .company-name {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      gap: 5px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .quote-button {
+      background: transparent;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: 2px solid white;
+    }
+
+    .quote-button:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 1200px) {
+      .top-bar {
+        display: none;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 0 15px;
+      }
+
+      nav a {
+        padding: 8px 15px;
+        font-size: 14px;
+      }
+
+      .company-name {
+        font-size: 20px;
+      }
+
+      header img {
+         height: 50px;
+      transition: transform 0.3s ease;
+      filter: brightness(0) invert(1);
+      }
+
+      .slide-indicators {
+        bottom: 15px;
+        gap: 12px;
+      }
+      
+      .indicator {
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    main {
+      flex: 1;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #222 0%, #111 100%);
+      color: #aaa;
+      text-align: center;
+      padding: 30px;
+      font-size: 14px;
+      margin-top: auto;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    }
+
+    .hero {
+      position: relative;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      margin-bottom: 50px;
+      background-size: cover;
+      background-position: center;
+      animation: backgroundChange 15s infinite;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      max-width: 100%;
+    }
+
+    .slide-indicators {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 3;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .indicator {
+      width: 15px;
+      height: 15px;
+      border: 2px solid white;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      background: rgba(255,255,255,0.3);
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .indicator.active {
+      background: white;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        height: 400px;
+        padding: 60px 20px;
+      }
+
+      .slide-indicators {
+        bottom: 40px;
+        gap: 12px;
+      }
+      
+      .indicator {
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    @keyframes indicatorActive {
+      0%, 28% {
+        background: white;
+      }
+      33%, 94% {
+        background: transparent;
+      }
+      100% {
+        background: white;
+      }
+    }
+
+    .indicator::after {
+      content: '';
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .indicator.active::after {
+      opacity: 1;
+    }
+
+    @keyframes indicatorAnimation {
+      0%, 28% {
+        transform: translateX(0);
+      }
+      33%, 61% {
+        transform: translateX(100%);
+      }
+      66%, 94% {
+        transform: translateX(200%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+
+    .hero * {
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes backgroundChange {
+      0%, 28% {
+        background-image: url('assets/icons/background.jpg');
+      }
+      33%, 61% {
+        background-image: url('assets/icons/background2.jpg');
+      }
+      66%, 94% {
+        background-image: url('assets/icons/background3.jpg');
+      }
+      100% {
+        background-image: url('assets/icons/background.jpg');
+      }
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .hero p {
+      font-size: 24px;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .hero a {
+      background-color: #004a99;
+      color: white;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      display: inline-block;
+      border: 2px solid transparent;
+    }
+
+    .hero a:hover {
+      background-color: transparent;
+      border-color: white;
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 80px 5%;
+    }
+
+    h2 {
+      font-size: 36px;
+      color: #004a99;
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    h2:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: #004a99;
+      margin: 15px auto;
+    }
+
+    .service-card, .project-card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-card:hover, .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .service-card h3, .project-card h3 {
+      color: #004a99;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="top-bar">
+      <div class="top-bar-container">
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <a href="tel:+359888123456">+359 888 123 456</a>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:office@burgasputstroy.bg">office@burgasputstroy.bg</a>
+          </div>
+        </div>
+        <div class="working-hours">
+          <i class="far fa-clock"></i>
+          <span>Работно време: ПОН-СЪБ: 08:00-18:00</span>
+        </div>
+      </div>
+    </div>
+    <div class="nav-bar">
+      <div class="nav-container">
+        <div class="logo-container">
+          <img src="assets/icons/burgasstroi.png" alt="Лого на Бургаспътстрой">
+          <span class="company-name">Бургаспътстрой АД</span>
+        </div>
+        <nav>
+          <a href="#services">Услуги</a>
+          <a href="#projects">Проекти</a>
+          <a href="#about">За нас</a>
+          <a href="#contact">Контакти</a>
+        </nav>
+        <a href="#quote" class="quote-button">Запитване за оферта</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Бургаспътстрой АД</h1>
+      <p>Надеждни пътища. Сигурно бъдеще.</p>
+      <a href="#projects">Вижте нашите проекти</a>
+    </div>
+    <div class="slide-indicators">
+      <div class="indicator" style="animation: indicatorActive 15s infinite"></div>
+      <div class="indicator" style="animation: indicatorActive 15s infinite 5s"></div>
+      <div class="indicator" style="animation: indicatorActive 15s infinite 10s"></div>
+    </div>
+  </section>
+
+
+</body>
+<!-- Услуги -->
+<section id="services" style="padding: 60px 20px; background-color: #fff; text-align: center;">
+  <h2 style="font-size: 32px; margin-bottom: 30px; color: #004a99;">Нашите услуги</h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1200px; margin: auto;">
+    <div style="flex: 1 1 250px; background: #f0f0f0; padding: 20px; border-radius: 8px;">
+      <h3>Пътно строителство</h3>
+      <p>Изграждане на пътища, улици и кръгови движения с високо качество и дълготрайност.</p>
+    </div>
+    <div style="flex: 1 1 250px; background: #f0f0f0; padding: 20px; border-radius: 8px;">
+      <h3>Ремонт и поддръжка</h3>
+      <p>Професионална рехабилитация и поддръжка на съществуваща пътна инфраструктура.</p>
+    </div>
+    <div style="flex: 1 1 250px; background: #f0f0f0; padding: 20px; border-radius: 8px;">
+      <h3>Асфалтиране</h3>
+      <p>Полагане на асфалт за улици, алеи, паркинги и индустриални площи.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Проекти -->
+<section id="projects" style="padding: 60px 20px; background-color: #e9f1fa;">
+  <h2 style="font-size: 32px; text-align: center; color: #004a99;">Наши проекти</h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1200px; margin: 40px auto 0;">
+    <div style="flex: 1 1 300px; background: white; border-radius: 8px; overflow: hidden;">
+      <img src="https://images.unsplash.com/photo-1616789788193-2b87d30de88c" alt="Проект 1" style="width: 100%; height: 200px; object-fit: cover;">
+      <div style="padding: 20px;">
+        <h3>Рехабилитация на път II-99</h3>
+        <p>Ремонтиран участък между Бургас и Созопол, завършен 2023 г.</p>
+      </div>
+    </div>
+    <div style="flex: 1 1 300px; background: white; border-radius: 8px; overflow: hidden;">
+      <img src="https://images.unsplash.com/photo-1581093588401-97602014c5b7" alt="Проект 2" style="width: 100%; height: 200px; object-fit: cover;">
+      <div style="padding: 20px;">
+        <h3>Изграждане на кръгово</h3>
+        <p>Ново кръгово в индустриална зона, с модерен дизайн и осветление.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- За нас -->
+<section id="about" style="padding: 60px 20px; background-color: #fff; text-align: center;">
+  <h2 style="font-size: 32px; color: #004a99;">За нас</h2>
+  <p style="max-width: 800px; margin: 30px auto; font-size: 18px; line-height: 1.6;">
+    Бургаспътстрой АД е водеща строителна компания със седалище в Бургас, специализирана в изграждането и поддръжката на пътна инфраструктура. С дългогодишен опит, модерен машинен парк и екип от професионалисти, гарантираме качество, срок и сигурност.
+  </p>
+</section>
+
+<!-- Контакти -->
+<section id="contact" style="padding: 60px 20px; background-color: #e9f1fa;">
+  <h2 style="font-size: 32px; text-align: center; color: #004a99;">Контакти</h2>
+  <div style="max-width: 800px; margin: 40px auto; text-align: center;">
+    <p><strong>Адрес:</strong> ул. Примерна 1, гр. Бургас</p>
+    <p><strong>Телефон:</strong> +359 888 123 456</p>
+    <p><strong>Имейл:</strong> office@burgasputstroy.bg</p>
+    <iframe
+      src="https://maps.google.com/maps?q=Burgas&t=&z=13&ie=UTF8&iwloc=&output=embed"
+      width="100%" height="300" style="border:0; margin-top: 20px;" allowfullscreen=""
+      loading="lazy">
+    </iframe>
+  </div>
+</section>
+
+  <footer>
+    &copy; 2025 Бургаспътстрой АД. Всички права запазени.
+  </footer>
+</html>
